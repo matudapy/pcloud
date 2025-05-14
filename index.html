@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pCloud Image Uploader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>pCloud Image Uploader</h1>
+        </header>
+        
+        <main>
+            <div class="upload-container">
+                <div id="drop-area">
+                    <p>ここに画像をドラッグ&ドロップするか、</p>
+                    <input type="file" id="file-input" accept="image/*" multiple>
+                    <label for="file-input" class="file-input-label">ファイルを選択</label>
+                </div>
+                
+                <div id="preview-container">
+                    <h2>アップロード予定の画像</h2>
+                    <div id="image-preview"></div>
+                </div>
+                
+                <div class="buttons">
+                    <button id="upload-btn" disabled>アップロード</button>
+                    <button id="clear-btn" disabled>クリア</button>
+                </div>
+            </div>
+            
+            <div id="upload-progress">
+                <h2>アップロード状況</h2>
+                <div id="progress-container"></div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2025 pCloud Image Uploader</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
