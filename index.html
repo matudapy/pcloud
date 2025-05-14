@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pCloud Image Uploader</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 </head>
 <body>
     <div class="container">
@@ -12,7 +15,70 @@
             <h1>pCloud Image Uploader</h1>
         </header>
         
-        <main>
+        <!-- Authentication Container -->
+        <div id="auth-container" class="auth-container">
+            <div class="auth-tabs">
+                <button id="login-tab" class="auth-tab active">ログイン</button>
+                <button id="signup-tab" class="auth-tab">新規登録</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">メールアドレス</label>
+                    <input type="email" id="login-email" placeholder="example@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">パスワード</label>
+                    <input type="password" id="login-password" placeholder="パスワード" required>
+                </div>
+                <div class="form-actions">
+                    <button id="login-button" class="auth-button">ログイン</button>
+                    <button id="forgot-password" class="text-button">パスワードを忘れた場合</button>
+                </div>
+                <div id="login-error" class="error-message"></div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="signup-email">メールアドレス</label>
+                    <input type="email" id="signup-email" placeholder="example@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">パスワード</label>
+                    <input type="password" id="signup-password" placeholder="パスワード (6文字以上)" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">パスワード (確認)</label>
+                    <input type="password" id="signup-confirm-password" placeholder="パスワード (確認)" required>
+                </div>
+                <div class="form-actions">
+                    <button id="signup-button" class="auth-button">登録</button>
+                </div>
+                <div id="signup-error" class="error-message"></div>
+            </div>
+            
+            <!-- Password Reset Form -->
+            <div id="reset-form" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="reset-email">メールアドレス</label>
+                    <input type="email" id="reset-email" placeholder="example@example.com" required>
+                </div>
+                <div class="form-actions">
+                    <button id="reset-button" class="auth-button">パスワードリセット</button>
+                    <button id="back-to-login" class="text-button">ログインに戻る</button>
+                </div>
+                <div id="reset-message" class="info-message"></div>
+            </div>
+        </div>
+        
+        <!-- App Container (Hidden until authenticated) -->
+        <main id="app-container" style="display: none;">
+            <div class="user-info">
+                <span>ログイン中: <span id="user-email"></span></span>
+                <button id="logout-button" class="logout-button">ログアウト</button>
+            </div>
             <div class="upload-container">
                 <div id="drop-area">
                     <p>ここに画像をドラッグ&ドロップするか、</p>
@@ -42,6 +108,11 @@
         </footer>
     </div>
     
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    <!-- App Script -->
     <script src="script.js"></script>
+    <!-- Auth Script -->
+    <script src="auth.js"></script>
 </body>
 </html>
